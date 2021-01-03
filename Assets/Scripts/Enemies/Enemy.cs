@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputActionManager : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     private void Start()
     {
