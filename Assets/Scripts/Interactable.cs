@@ -5,7 +5,7 @@ using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 using UnityEngine;
 using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 
-public abstract class Interaction : MonoBehaviour
+public abstract class Interactable : MonoBehaviour
 {
     public abstract void OnTouch(Touch touch, Vector3 touchPosition);
 }

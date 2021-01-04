@@ -8,7 +8,7 @@ using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 
 public class InputManager : Singleton<InputManager>
 {
-    private Interaction interaction;
+    private Interactable interactable;
     private Collider2D hit;
     private Camera cameraMain;
 
@@ -34,11 +34,11 @@ public class InputManager : Singleton<InputManager>
             {
                 return;
             }
-            interaction = hit.GetComponent<Interaction>();
+            interactable = hit.GetComponent<Interactable>();
         }
-        if (interaction)
+        if (interactable)
         {
-            interaction.OnTouch(activeTouch, new Vector3(touchPosition.x, touchPosition.y, 0f));
+            interactable.OnTouch(activeTouch, new Vector3(touchPosition.x, touchPosition.y, 0f));
         }
     }
 
