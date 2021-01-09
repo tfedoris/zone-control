@@ -11,13 +11,6 @@ public class Enemy : Interactable
     [SerializeField]
     private float speed = 5f;
 
-    private new Rigidbody2D rigidbody2D;
-
-    private void Start()
-    {
-        rigidbody2D = GetComponent<Rigidbody2D>();
-    }
-
     private void Update()
     {
         RotateTowardsTarget();
@@ -34,8 +27,8 @@ public class Enemy : Interactable
         
         Destroy(gameObject);
     }
-    
-    public virtual void MoveTowardsTarget()
+
+    protected virtual void MoveTowardsTarget()
     {
         float step = speed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, target.position, step);

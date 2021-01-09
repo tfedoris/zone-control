@@ -10,7 +10,7 @@ using Vector3 = UnityEngine.Vector3;
 public class Spawner : MonoBehaviour
 {
     [SerializeField]
-    private SpawnerPosition spawnerPosition;
+    private SpawnerPosition spawnerPosition = SpawnerPosition.Top;
 
     [SerializeField]
     private Vector2 offsetVector = new Vector2(0.5f, 0.5f);
@@ -23,6 +23,7 @@ public class Spawner : MonoBehaviour
 
     private float worldBoundaryX;
     private float worldBoundaryY;
+    private Rect safeArea;
 
     private enum SpawnerPosition
     {
@@ -31,22 +32,30 @@ public class Spawner : MonoBehaviour
         BottomLeft,
         BottomRight,
         Left,
-        Right
+        Right,
+        Top,
+        Bottom
     }
     
     private void Start()
     {
-        Vector2 offset = Vector2.zero;
-        Vector2 screenPoint = Vector2.zero;
+        Vector2 offset;
+        Vector2 screenPoint;
+        safeArea = Screen.safeArea;
+        
+        if (Camera.main is null)
+        {
+            return;
+        }
 
         switch (spawnerPosition)
         {
             case SpawnerPosition.TopLeft:
-                screenPoint = new Vector2(0f, Screen.height);
+                screenPoint = new Vector2(0f, safeArea.height);
                 offset = new Vector2(-offsetVector.x, offsetVector.y);
                 break;
             case SpawnerPosition.TopRight:
-                screenPoint = new Vector2(Screen.width, Screen.height);
+                screenPoint = new Vector2(safeArea.width, safeArea.height);
                 offset = new Vector2(offsetVector.x, offsetVector.y);
                 break;
             case SpawnerPosition.BottomLeft:
@@ -54,16 +63,24 @@ public class Spawner : MonoBehaviour
                 offset = new Vector2(-offsetVector.x, -offsetVector.y);
                 break;
             case SpawnerPosition.BottomRight:
-                screenPoint = new Vector2(Screen.width, 0f);
+                screenPoint = new Vector2(safeArea.width, 0f);
                 offset = new Vector2(offsetVector.x, -offsetVector.y);
                 break;
             case SpawnerPosition.Left:
-                screenPoint = new Vector2(0f, Screen.height / 2f);
+                screenPoint = new Vector2(0f, safeArea.height / 2f);
                 offset = new Vector2(-offsetVector.magnitude, 0f);
                 break;
             case SpawnerPosition.Right:
-                screenPoint = new Vector2(Screen.width, Screen.height / 2f);
+                screenPoint = new Vector2(safeArea.width, safeArea.height / 2f);
                 offset = new Vector2(offsetVector.magnitude, 0f);
+                break;
+            case SpawnerPosition.Top:
+                screenPoint = new Vector2(safeArea.width / 2f, safeArea.height);
+                offset = new Vector2(0f, offsetVector.magnitude);
+                break;
+            case SpawnerPosition.Bottom:
+                screenPoint = new Vector2(safeArea.width / 2f, 0f);
+                offset = new Vector2(0f, -offsetVector.magnitude);
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
