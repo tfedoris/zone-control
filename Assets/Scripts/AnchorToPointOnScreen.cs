@@ -12,20 +12,21 @@ public class AnchorToPointOnScreen : MonoBehaviour
     private float spriteSize;
     private Vector2 screenPoint;
     private Camera mainCamera;
-    private Rect safeArea;
+    private float offset = 0f;
 
     private enum AnchorPoint
     {
         Top,
+        CenterLeft,
         Center,
+        CenterRight,
         Bottom
     }
 
     private void Start()
     {
         mainCamera = Camera.main;
-        safeArea = Screen.safeArea;
-        
+
         if (mainCamera is null)
         {
             return;
@@ -34,13 +35,21 @@ public class AnchorToPointOnScreen : MonoBehaviour
         switch (anchorPoint)
         {
             case AnchorPoint.Top:
-                screenPoint = new Vector2(Screen.safeArea.width / 2f, Screen.safeArea.height);
+                screenPoint = new Vector2(Screen.width / 2f, Screen.height);
                 break;
             case AnchorPoint.Center:
-                screenPoint = new Vector2(Screen.safeArea.width / 2f, Screen.safeArea.height / 2f);
+                screenPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
                 break;
             case AnchorPoint.Bottom:
-                screenPoint = new Vector2(Screen.safeArea.width / 2f, 0f);
+                screenPoint = new Vector2(Screen.width / 2f, 0f);
+                break;
+            case AnchorPoint.CenterLeft:
+                screenPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
+                offset = -1.5f;
+                break;
+            case AnchorPoint.CenterRight:
+                screenPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
+                offset = 1.5f;
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -48,6 +57,6 @@ public class AnchorToPointOnScreen : MonoBehaviour
 
         Vector3 worldPoint = mainCamera.ScreenToWorldPoint(new Vector3(screenPoint.x, screenPoint.y, 0f));
 
-        transform.position = new Vector3(worldPoint.x, worldPoint.y, 0f);
+        transform.position = new Vector3(worldPoint.x + offset, worldPoint.y, 0f);
     }
 }

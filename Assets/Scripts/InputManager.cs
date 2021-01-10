@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.U2D.Path;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
@@ -27,6 +28,7 @@ public class InputManager : Singleton<InputManager>
         
         Touch activeTouch = Touch.activeFingers[0].currentTouch;
         Vector3 touchPosition = cameraMain.ScreenToWorldPoint(activeTouch.screenPosition);
+
         if (activeTouch.phase == TouchPhase.Began)
         {
             hit = Physics2D.OverlapPoint(new Vector2(touchPosition.x, touchPosition.y));
