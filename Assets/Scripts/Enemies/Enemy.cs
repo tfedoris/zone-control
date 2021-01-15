@@ -2,14 +2,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
+using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 using UnityEngine;
 
 public class Enemy : Interactable
 {
-    public Transform target;
+    public event Action<Enemy> EnemyDeath;
     
+    public Transform target;
+
+    [SerializeField]
+    private Consumable consumablePrefab;
+
     [SerializeField]
     private float speed = 5f;
+
+    [SerializeField]
+    private double tapWindow = 0.1;
 
     private void Update()
     {
@@ -20,11 +29,17 @@ public class Enemy : Interactable
     public override void OnTouch(Touch touch, Vector3 touchPosition)
     {
         // Destroy on touch
-        if (!touch.isInProgress)
+        if (touch.phase != TouchPhase.Began && (touch.time - touch.startTime) > tapWindow)
         {
             return;
         }
-        
+
+        OnEnemyDeath();
+    }
+    
+    public void OnEnemyDeath()
+    {
+        EnemyDeath?.Invoke(this);
         Destroy(gameObject);
     }
 

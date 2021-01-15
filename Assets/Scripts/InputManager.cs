@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.U2D.Path;
+using Drawing;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 
 public class InputManager : Singleton<InputManager>
 {
+    [SerializeField] 
+    private float overlapRadius = 0.5f;
+
     private Interactable interactable;
     private Collider2D hit;
     private Camera cameraMain;
@@ -25,22 +29,28 @@ public class InputManager : Singleton<InputManager>
         {
             return;
         }
-        
-        Touch activeTouch = Touch.activeFingers[0].currentTouch;
-        Vector3 touchPosition = cameraMain.ScreenToWorldPoint(activeTouch.screenPosition);
 
-        if (activeTouch.phase == TouchPhase.Began)
+        foreach (var activeTouch in Touch.activeTouches)
         {
-            hit = Physics2D.OverlapPoint(new Vector2(touchPosition.x, touchPosition.y));
-            if (!hit)
+            Vector3 touchPosition = cameraMain.ScreenToWorldPoint(activeTouch.screenPosition);
+
+            Draw.CircleXY(new Vector3(touchPosition.x, touchPosition.y, 0f), overlapRadius);
+
+            if (activeTouch.phase == TouchPhase.Began)
             {
-                return;
+                hit = Physics2D.OverlapCircle(new Vector2(touchPosition.x, touchPosition.y), overlapRadius);
+                if (!hit)
+                {
+                    return;
+                }
+
+                interactable = hit.GetComponent<Interactable>();
             }
-            interactable = hit.GetComponent<Interactable>();
-        }
-        if (interactable)
-        {
-            interactable.OnTouch(activeTouch, new Vector3(touchPosition.x, touchPosition.y, 0f));
+
+            if (interactable)
+            {
+                interactable.OnTouch(activeTouch, new Vector3(touchPosition.x, touchPosition.y, 0f));
+            }
         }
     }
 

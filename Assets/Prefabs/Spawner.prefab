@@ -94,7 +94,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 758651470a4979742ba8125d6ed042b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnerPosition: 6
-  offsetVector: {x: 0.5, y: 0.5}
-  target: {fileID: 0}
+  spawnTimeMin: 1
+  spawnTimeMax: 3
+  spawnerPosition: 2
+  offsetVector: {x: 1.5, y: 0.5}
+  targetZones: []
   enemyPrefabs: []

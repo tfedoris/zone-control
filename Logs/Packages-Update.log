@@ -63,3 +63,13 @@ Update Mode: updateDependencies
 
 The following packages were updated:
   com.unity.2d.pixel-perfect from version 2.0.4 to 2.1.0
+
+=== Sun Jan 10 15:29:53 2021
+
+Packages were changed.
+Update Mode: mergeDefaultDependencies
+
+The following packages were added:
+  com.unity.burst@1.3.0
+  com.unity.collections@0.7.0-preview.2
+  com.unity.mathematics@1.1.0
