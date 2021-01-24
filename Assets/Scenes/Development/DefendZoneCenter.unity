@@ -296,6 +296,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2212832809845425202, guid: 704e2e0242b7bf845a1ffce4bdad1f8f,
+        type: 3}
+      propertyPath: isInvincible
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3450517500335181724, guid: 704e2e0242b7bf845a1ffce4bdad1f8f,
         type: 3}
       propertyPath: m_RootOrder
@@ -647,6 +652,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2212832809845425202, guid: 704e2e0242b7bf845a1ffce4bdad1f8f,
+        type: 3}
+      propertyPath: isInvincible
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3450517500335181724, guid: 704e2e0242b7bf845a1ffce4bdad1f8f,
         type: 3}
       propertyPath: m_RootOrder
@@ -1453,6 +1463,7 @@ MonoBehaviour:
   consumablePrefab: {fileID: 7000243210540095064, guid: ff6e18d0b7377144cb6e25ca41d189a1,
     type: 3}
   spawnDelay: 10
+  zoneTransform: {fileID: 6441389041858970919}
 --- !u!1001 &1284320668841293536
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1606,6 +1617,11 @@ PrefabInstance:
     - target: {fileID: -5398347951926249980, guid: 704e2e0242b7bf845a1ffce4bdad1f8f,
         type: 3}
       propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2212832809845425202, guid: 704e2e0242b7bf845a1ffce4bdad1f8f,
+        type: 3}
+      propertyPath: isInvincible
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3450517500335181724, guid: 704e2e0242b7bf845a1ffce4bdad1f8f,
