@@ -12,10 +12,15 @@ public class ConsumableSpawner : MonoBehaviour
     [SerializeField]
     private float spawnDelay = 30.0f;
 
+    [SerializeField]
+    private Transform zoneTransform;
+
     private Camera mainCamera;
     private float timeSinceLastSpawn;
     private Vector2 spawnPositionMin;
     private Vector2 spawnPositionMax;
+    private bool isCenter = false;
+    private float zonePositionY;
 
     private void Start()
     {
@@ -28,6 +33,9 @@ public class ConsumableSpawner : MonoBehaviour
         Vector2 screenPositionMax = new Vector2(Screen.width - 150f, Screen.height - 150f);
         spawnPositionMin = mainCamera.ScreenToWorldPoint(screenPositionMin);
         spawnPositionMax = mainCamera.ScreenToWorldPoint(screenPositionMax);
+
+        zonePositionY = zoneTransform.position.y;
+        isCenter = (zonePositionY == 0f);
     }
 
     // Update is called once per frame
@@ -40,17 +48,17 @@ public class ConsumableSpawner : MonoBehaviour
             float spawnPositionX;
             float spawnPositionY;
             
-            if (Random.value > 0.5f)
+            if (!isCenter || Random.value > 0.5f)
             {
                 // Spawn above zones
                 spawnPositionX = Random.Range(spawnPositionMin.x, spawnPositionMax.x);
-                spawnPositionY = Random.Range(spawnPositionMin.y, -2.5f);
+                spawnPositionY = Random.Range(zonePositionY + 2.5f, spawnPositionMax.y);
             }
             else
             {
                 // Spawn below zones
                 spawnPositionX = Random.Range(spawnPositionMin.x, spawnPositionMax.x);
-                spawnPositionY = Random.Range(2.5f, spawnPositionMax.y);
+                spawnPositionY = Random.Range(spawnPositionMin.y, zonePositionY - 2.5f);
             }
 
             Vector3 spawnPosition = new Vector3(spawnPositionX, spawnPositionY, 0f);

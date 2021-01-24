@@ -6,6 +6,9 @@ using UnityEngine;
 public class Zone : MonoBehaviour
 {
     public event Action<Zone> ZoneDestroyed;
+
+    [SerializeField]
+    private bool isInvincible = false;
     
     [SerializeField]
     private Color fullHealthColor;
@@ -54,7 +57,7 @@ public class Zone : MonoBehaviour
     {
         enemy.OnEnemyDeath();
 
-        if (spriteRenderer.color == fullHealthColor)
+        if (!isInvincible && spriteRenderer.color == fullHealthColor)
         {
             spriteRenderer.color = halfHealthColor;
         }

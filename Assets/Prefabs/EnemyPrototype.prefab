@@ -99,7 +99,7 @@ MonoBehaviour:
   target: {fileID: 0}
   consumablePrefab: {fileID: 7000243210540095064, guid: ff6e18d0b7377144cb6e25ca41d189a1,
     type: 3}
-  speed: 2
+  speed: 3
   tapWindow: 0.1
 --- !u!50 &-8625985604878316872
 Rigidbody2D:
