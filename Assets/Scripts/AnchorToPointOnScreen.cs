@@ -43,7 +43,7 @@ public class AnchorToPointOnScreen : MonoBehaviour
                 screenPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
                 break;
             case AnchorPoint.Bottom:
-                screenPoint = new Vector2(Screen.width / 2f, 300f);
+                screenPoint = new Vector2(Screen.width / 2f, 400f);
                 break;
             case AnchorPoint.CenterLeft:
                 screenPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
@@ -54,11 +54,11 @@ public class AnchorToPointOnScreen : MonoBehaviour
                 offset = 1.5f;
                 break;
             case AnchorPoint.BottomLeft:
-                screenPoint = new Vector2(Screen.width / 2f, 300f);
+                screenPoint = new Vector2(Screen.width / 2f, 400f);
                 offset = -1.5f;
                 break;
             case AnchorPoint.BottomRight:
-                screenPoint = new Vector2(Screen.width / 2f, 300f);
+                screenPoint = new Vector2(Screen.width / 2f, 400f);
                 offset = 1.5f;
                 break;
             default:

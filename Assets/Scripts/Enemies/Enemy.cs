@@ -8,7 +8,8 @@ using UnityEngine;
 public class Enemy : Interactable
 {
     public event Action<Enemy> EnemyDeath;
-    
+    public event Action EnemyKilledByPlayer;
+
     public Transform target;
 
     [SerializeField]
@@ -34,13 +35,19 @@ public class Enemy : Interactable
             return;
         }
 
-        OnEnemyDeath();
+        OnEnemyKilledByPlayer();
     }
     
     public void OnEnemyDeath()
     {
         EnemyDeath?.Invoke(this);
         Destroy(gameObject);
+    }
+    
+    public void OnEnemyKilledByPlayer()
+    {
+        EnemyKilledByPlayer?.Invoke();
+        OnEnemyDeath();
     }
 
     protected virtual void MoveTowardsTarget()

@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Development/DefendZoneCenter.unity
-    guid: af70f5d720faf2644a998b30e6654ae1
+    path: Assets/Scenes/Development/DefendZoneBottom.unity
+    guid: 283e40e1a0a7e4d829761828d807e0cb
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: c0ecb7929f8051b428377e597e591877,
       type: 2}

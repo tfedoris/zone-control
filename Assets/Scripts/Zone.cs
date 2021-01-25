@@ -61,11 +61,11 @@ public class Zone : MonoBehaviour
         {
             spriteRenderer.color = halfHealthColor;
         }
-        else if (spriteRenderer.color == halfHealthColor)
+        else if (!isInvincible && spriteRenderer.color == halfHealthColor)
         {
             spriteRenderer.color = lowHealthColor;
         }
-        else
+        else if (!isInvincible)
         {
             OnZoneDestroyed();
         }
