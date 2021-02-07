@@ -24,7 +24,7 @@ public class ScoreManager : Singleton<ScoreManager>
         scoreCounterText.text = scoreValue.ToString();
     }
 
-    private IEnumerator PulseText()
+    private IEnumerator PulseText(int pointWorth)
     {
         float maxScaleValue = 1.2f;
 
@@ -36,7 +36,7 @@ public class ScoreManager : Singleton<ScoreManager>
 
         scoreCounterText.rectTransform.localScale = Vector3.one * maxScaleValue;
 
-        scoreValue += 10;
+        scoreValue += pointWorth;
 
         for (float i = maxScaleValue; i >= 1f; i -= 0.05f)
         {
@@ -47,8 +47,8 @@ public class ScoreManager : Singleton<ScoreManager>
         scoreCounterText.rectTransform.localScale = Vector3.one;
     }
 
-    public void HandleEnemyKilledByPlayer()
+    public void HandleScoreIncrease(int pointWorth)
     {
-        StartCoroutine(PulseText());
+        StartCoroutine(PulseText(pointWorth));
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -29,8 +30,8 @@ public class ConsumableSpawner : MonoBehaviour
         {
             return;
         }
-        Vector2 screenPositionMin = new Vector2(150f, 150f);
-        Vector2 screenPositionMax = new Vector2(Screen.width - 150f, Screen.height - 150f);
+        Vector2 screenPositionMin = new Vector2(Screen.safeArea.xMin + 300f, Screen.safeArea.yMin + 300f);
+        Vector2 screenPositionMax = new Vector2(Screen.safeArea.xMax - 300f, Screen.safeArea.yMax - 300f);
         spawnPositionMin = mainCamera.ScreenToWorldPoint(screenPositionMin);
         spawnPositionMax = mainCamera.ScreenToWorldPoint(screenPositionMax);
 
@@ -52,13 +53,13 @@ public class ConsumableSpawner : MonoBehaviour
             {
                 // Spawn above zones
                 spawnPositionX = Random.Range(spawnPositionMin.x, spawnPositionMax.x);
-                spawnPositionY = Random.Range(zonePositionY + 2.5f, spawnPositionMax.y);
+                spawnPositionY = Random.Range(zonePositionY + 5f, spawnPositionMax.y);
             }
             else
             {
                 // Spawn below zones
                 spawnPositionX = Random.Range(spawnPositionMin.x, spawnPositionMax.x);
-                spawnPositionY = Random.Range(spawnPositionMin.y, zonePositionY - 2.5f);
+                spawnPositionY = Random.Range(spawnPositionMin.y, zonePositionY - 5f);
             }
 
             Vector3 spawnPosition = new Vector3(spawnPositionX, spawnPositionY, 0f);

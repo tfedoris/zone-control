@@ -4,22 +4,30 @@ using System.Collections.Generic;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Enemy : Interactable
 {
     public event Action<Enemy> EnemyDeath;
-    public event Action EnemyKilledByPlayer;
+    public event Action<int> EnemyKilledByPlayer;
 
     public Transform target;
 
     [SerializeField]
-    private Consumable consumablePrefab;
-
-    [SerializeField]
-    private float speed = 5f;
+    private float minSpeed = 2f, maxSpeed = 3f;
 
     [SerializeField]
     private double tapWindow = 0.1;
+
+    [SerializeField]
+    private int pointWorth = 10;
+
+    private float speed = 3f;
+
+    private void Awake()
+    {
+        speed = Random.Range(minSpeed, maxSpeed);
+    }
 
     private void Update()
     {
@@ -46,7 +54,7 @@ public class Enemy : Interactable
     
     public void OnEnemyKilledByPlayer()
     {
-        EnemyKilledByPlayer?.Invoke();
+        EnemyKilledByPlayer?.Invoke(pointWorth);
         OnEnemyDeath();
     }
 

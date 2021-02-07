@@ -124,8 +124,9 @@ public class EnemySpawner : MonoBehaviour
         }
         enemyPrefabs[index].target = targetZones[targetIndex].transform;
         spawnedEnemies.Add(Instantiate(enemyPrefabs[index], transform.position, transform.rotation));
+        spawnedEnemies.Last().gameObject.SetActive(true);
         spawnedEnemies.Last().EnemyDeath += HandleEnemyDeath;
-        spawnedEnemies.Last().EnemyKilledByPlayer += scoreManager.HandleEnemyKilledByPlayer;
+        spawnedEnemies.Last().EnemyKilledByPlayer += scoreManager.HandleScoreIncrease;
     }
 
     private void SubscribeTargetZones()
@@ -149,7 +150,7 @@ public class EnemySpawner : MonoBehaviour
     {
         spawnedEnemies.RemoveAll(x => x == enemy);
         enemy.EnemyDeath -= HandleEnemyDeath;
-        enemy.EnemyKilledByPlayer -= scoreManager.HandleEnemyKilledByPlayer;
+        enemy.EnemyKilledByPlayer -= scoreManager.HandleScoreIncrease;
     }
 
     private void HandleZoneDestroyed(Zone zone)

@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Zone : MonoBehaviour
 {
     public event Action<Zone> ZoneDestroyed;
+    public event Action<int> ConsumableScored;
+    
+    [SerializeField]
+    private ScoreManager scoreManager;
 
     [SerializeField]
     private bool isInvincible = false;
@@ -28,10 +33,14 @@ public class Zone : MonoBehaviour
         spriteRenderer.color = fullHealthColor;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
+        ConsumableScored += scoreManager.HandleScoreIncrease;
+    }
+    
+    private void OnDisable()
+    {
+        ConsumableScored -= scoreManager.HandleScoreIncrease;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -71,7 +80,7 @@ public class Zone : MonoBehaviour
         }
     }
     
-    private void HandleConsumableCollision(Component consumable)
+    private void HandleConsumableCollision(Consumable consumable)
     {
         Destroy(consumable.gameObject);
 
@@ -82,6 +91,10 @@ public class Zone : MonoBehaviour
         else if (spriteRenderer.color == halfHealthColor)
         {
             spriteRenderer.color = fullHealthColor;
+        }
+        else
+        {
+            ConsumableScored?.Invoke(consumable.PointWorth);
         }
     }
 
