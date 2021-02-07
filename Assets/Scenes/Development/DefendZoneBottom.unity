@@ -206,7 +206,7 @@ PrefabInstance:
     - target: {fileID: 7417574546286050286, guid: e040b6d591f6e4d0e8de7919f696c6c0,
         type: 3}
       propertyPath: spawnTimeMin
-      value: 1
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 7417574546286050286, guid: e040b6d591f6e4d0e8de7919f696c6c0,
         type: 3}
@@ -488,7 +488,7 @@ PrefabInstance:
     - target: {fileID: 6341475176051154242, guid: 704e2e0242b7bf845a1ffce4bdad1f8f,
         type: 3}
       propertyPath: m_Name
-      value: ZonePrototype (1)
+      value: LeftZone
       objectReference: {fileID: 0}
     - target: {fileID: 6448359976279420379, guid: 704e2e0242b7bf845a1ffce4bdad1f8f,
         type: 3}
@@ -594,7 +594,7 @@ PrefabInstance:
     - target: {fileID: 7417574546286050286, guid: e040b6d591f6e4d0e8de7919f696c6c0,
         type: 3}
       propertyPath: spawnTimeMin
-      value: 1
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 7417574546286050286, guid: e040b6d591f6e4d0e8de7919f696c6c0,
         type: 3}
@@ -868,7 +868,7 @@ PrefabInstance:
     - target: {fileID: 6341475176051154242, guid: 704e2e0242b7bf845a1ffce4bdad1f8f,
         type: 3}
       propertyPath: m_Name
-      value: ZonePrototype (2)
+      value: RightZone
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 704e2e0242b7bf845a1ffce4bdad1f8f, type: 3}
@@ -957,7 +957,7 @@ PrefabInstance:
     - target: {fileID: 7417574546286050286, guid: e040b6d591f6e4d0e8de7919f696c6c0,
         type: 3}
       propertyPath: spawnTimeMin
-      value: 1
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 7417574546286050286, guid: e040b6d591f6e4d0e8de7919f696c6c0,
         type: 3}
@@ -1167,7 +1167,7 @@ PrefabInstance:
     - target: {fileID: 7527110894645032631, guid: a7a6181e2cec7134eab838ba642f6373,
         type: 3}
       propertyPath: minSpeed
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7a6181e2cec7134eab838ba642f6373, type: 3}
@@ -1463,7 +1463,9 @@ MonoBehaviour:
   consumablePrefab: {fileID: 7000243210540095064, guid: ff6e18d0b7377144cb6e25ca41d189a1,
     type: 3}
   spawnDelay: 10
-  zoneTransform: {fileID: 6441389041858970919}
+  leftZoneTransform: {fileID: 1638330302}
+  centerZoneTransform: {fileID: 6441389041858970919}
+  rightZoneTransform: {fileID: 536915837}
 --- !u!1001 &1284320668841293536
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1712,7 +1714,7 @@ PrefabInstance:
     - target: {fileID: 6341475176051154242, guid: 704e2e0242b7bf845a1ffce4bdad1f8f,
         type: 3}
       propertyPath: m_Name
-      value: ZonePrototype
+      value: CenterZone
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 704e2e0242b7bf845a1ffce4bdad1f8f, type: 3}
