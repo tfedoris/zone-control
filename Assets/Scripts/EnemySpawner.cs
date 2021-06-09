@@ -12,6 +12,9 @@ using Vector3 = UnityEngine.Vector3;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField]
+    private ScoreManager scoreManager;
+    
+    [SerializeField]
     private float spawnTimeMin = 1.0f, spawnTimeMax = 3.0f;
     
     [SerializeField]
@@ -121,7 +124,9 @@ public class EnemySpawner : MonoBehaviour
         }
         enemyPrefabs[index].target = targetZones[targetIndex].transform;
         spawnedEnemies.Add(Instantiate(enemyPrefabs[index], transform.position, transform.rotation));
+        spawnedEnemies.Last().gameObject.SetActive(true);
         spawnedEnemies.Last().EnemyDeath += HandleEnemyDeath;
+        spawnedEnemies.Last().EnemyKilledByPlayer += scoreManager.HandleScoreIncrease;
     }
 
     private void SubscribeTargetZones()
@@ -144,6 +149,8 @@ public class EnemySpawner : MonoBehaviour
     private void HandleEnemyDeath(Enemy enemy)
     {
         spawnedEnemies.RemoveAll(x => x == enemy);
+        enemy.EnemyDeath -= HandleEnemyDeath;
+        enemy.EnemyKilledByPlayer -= scoreManager.HandleScoreIncrease;
     }
 
     private void HandleZoneDestroyed(Zone zone)

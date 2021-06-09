@@ -5,6 +5,16 @@ using UnityEngine;
 
 public class Consumable : Interactable
 {
+    [SerializeField]
+    private int pointWorth = 10;
+
+    public int PointWorth
+    {
+        get => pointWorth;
+
+        private set => pointWorth = value;
+    }
+    
     public override void OnTouch(Touch touch, Vector3 touchPosition)
     {
         // Drag on Touch
