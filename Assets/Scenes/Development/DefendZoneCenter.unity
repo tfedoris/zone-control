@@ -237,16 +237,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7134880443960140737, guid: 5963f450621044b2283b1d2c50496092,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7134880443960140739, guid: 5963f450621044b2283b1d2c50496092,
-        type: 3}
-      propertyPath: m_BlockingMask.m_Bits
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7134880443960140740, guid: 5963f450621044b2283b1d2c50496092,
         type: 3}
       propertyPath: m_Name
@@ -1662,12 +1652,12 @@ PrefabInstance:
     - target: {fileID: 7527110894645032631, guid: a7a6181e2cec7134eab838ba642f6373,
         type: 3}
       propertyPath: maxSpeed
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7527110894645032631, guid: a7a6181e2cec7134eab838ba642f6373,
         type: 3}
       propertyPath: minSpeed
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7527110894645032631, guid: a7a6181e2cec7134eab838ba642f6373,
         type: 3}
@@ -1990,7 +1980,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   consumablePrefab: {fileID: 7000243210540095064, guid: ff6e18d0b7377144cb6e25ca41d189a1,
     type: 3}
-  spawnDelay: 10
+  spawnDelay: 8
   leftZoneTransform: {fileID: 6441389041858970919}
   centerZoneTransform: {fileID: 1638330302}
   rightZoneTransform: {fileID: 536915837}
